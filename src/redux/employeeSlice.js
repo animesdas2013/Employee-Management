@@ -19,17 +19,19 @@ export const modifyEmployee = createAsyncThunk('employee/modifyEmployee', async 
 
 export const removeEmployee = createAsyncThunk('employee/removeEmployee', async (id) => {
   await deleteEmployee(id);
-  return id; // Return the ID for easy filtering in reducers
+  return id; 
 });
 
-// Slice
+const initialState = {
+  employees: [],  
+  loading: false,
+  error: null
+};
+
+
 const employeeSlice = createSlice({
   name: 'employee',
-  initialState: {
-    employees: [],
-    status: 'idle',
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
